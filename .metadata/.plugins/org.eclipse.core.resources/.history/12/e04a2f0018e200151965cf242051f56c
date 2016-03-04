@@ -1,0 +1,26 @@
+package Ex1;
+
+import javax.swing.JOptionPane;
+
+public class counting {
+	public static void main(String[] args){
+		read();
+	}
+	public static void read(){
+		String text=JOptionPane.showInputDialog(null,"please input the text");
+		char[] textarray =text.toCharArray();
+		char[] alphbet ={'a','b','c','d','e'};
+		int[] counting= new int [26];
+		for(char n: textarray) {
+			
+			for (int i = 0; i<alphbet.length; i++){
+				if (n == alphbet[i]) {
+					counting[i]++;
+					
+				}
+			}
+		System.out.println(counting.toString());
+		}
+			
+	}
+}
