@@ -22,7 +22,7 @@ public class counting {
 			}
 		}
 		for(int o = 0 ; o<26; o++) {
-			System.out.print(alphbet[o] + " " + counting[o] + "\t  ");
+			System.out.print(alphbet[o] + " " + counting[o] + "  ");
 			System.out.print(alphbet[o] + " ");
 			for (int k=0; k<counting[o]; k++)
 				System.out.print("*");
