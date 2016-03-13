@@ -7,6 +7,14 @@
 <fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<<<<<<< HEAD
 <fullyQualifiedTypeName name="java.nio.file.Path"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
+=======
+<fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.util.stream.DoubleStream"/>
+<fullyQualifiedTypeName name="java.util.stream.IntStream"/>
+>>>>>>> b072f98828e1040d6e26f6167d831758f62d12b0
 </qualifiedTypeNameHistroy>
