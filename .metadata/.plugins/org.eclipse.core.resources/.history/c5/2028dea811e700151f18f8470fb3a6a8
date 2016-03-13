@@ -1,0 +1,18 @@
+package Ex1;
+
+import java.io.BufferedReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class Read {
+	public static void main(String[] args) throws readline {
+		Path file = Paths.get("dvd.txt");
+		
+		BufferedReader reader = Files.newBufferedReader(file);
+		String line =reader.readLine();
+		while (line != null){
+			
+		}
+	}
+
+}

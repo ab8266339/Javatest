@@ -4107,3 +4107,62 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2016-03-10 21:51:28.850 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-03-10 21:51:38.586
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\hao'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 4 2016-03-10 22:41:48.062
+!MESSAGE Full project indexing required:
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\charsets.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\access-bridge-64.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\cldrdata.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\dnsns.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\jaccess.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\jfxrt.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\localedata.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\nashorn.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\sunec.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\sunjce_provider.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\sunmscapi.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\sunpkcs11.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\ext\zipfs.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\jce.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\jfr.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\jsse.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\resources.jar
+  [+] C:\Program Files\Java\jre1.8.0_65\lib\rt.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:167)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.startUp(ProjectTypesIndex.java:122)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+!SESSION 2016-03-13 12:51:56.030 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-03-13 12:52:05.586
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\hao'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

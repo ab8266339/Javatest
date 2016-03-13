@@ -9,18 +9,14 @@
 		<item value="350" key="dialogWidth"/>
 		<list key="textEntries">
 			<item value="1"/>
-			<item value="1"/>
 		</list>
 		<list key="orderedElements">
-			<item value="org.eclipse.jdt.ui.edit.text.java.generate.tostring"/>
 			<item value="org.eclipse.wb.swing.JFrame"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.commands"/>
 			<item value="org.eclipse.ui.wizards"/>
 		</list>
 		<list key="textArray">
-			<item value="tos"/>
 			<item value="jframe"/>
 		</list>
 	</section>
