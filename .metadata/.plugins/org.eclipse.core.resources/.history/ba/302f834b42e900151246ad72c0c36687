@@ -1,0 +1,77 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+
+public class gui extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					gui frame = new gui();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public gui() {
+		contentPane.setLayout(null);
+		contentPane.add(btnAButton);
+		
+		JCheckBox chckbxDeepPan = new JCheckBox("Deep pan");
+		chckbxDeepPan.setBounds(5, 34, 71, 23);
+		contentPane.add(chckbxDeepPan);
+		
+		JCheckBox chckbxThinBase = new JCheckBox("Thin base");
+		chckbxThinBase.setBounds(0, 66, 97, 23);
+		contentPane.add(chckbxThinBase);
+		
+		JCheckBox chckbxCalzone = new JCheckBox("calzone");
+		chckbxCalzone.setBounds(5, 92, 97, 23);
+		contentPane.add(chckbxCalzone);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JButton btnAButton = new JButton("A button");
+		btnAButton.setBounds(5, 233, 424, 23);
+		btnAButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String base = null;
+				//lblThisIsText.setText("Thanks");
+				btnAButton.setText("Thanks for your ordering"+base);
+				if(chckbxCalzone.isSelected()){
+					base = "calzone";
+				}
+				else if (chckbxDeepPan.isSelected()){
+					base = "deeppan";
+					}
+				else base = "thinbase";
+				}
+			
+		});
+		
+	}
+}
