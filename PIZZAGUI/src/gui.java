@@ -99,7 +99,9 @@ public class gui extends JFrame {
 				}
 				if (chckbxChicken.isSelected()){
 					toppings.add(PizzaTopping.CHICKEN);
+				
 				}
+				else toppings.remove(PizzaTopping.CHICKEN);
 				btnAButton.setText("Thanks for your ordering "+base+" base pizza");
 				txtYourToppings.setText("you chose " + toppings.toString());
 				
