@@ -10,12 +10,12 @@ public class hello {
 	public static void main(String[] args)
 	{
 	
-		welcome();
-		algebra();
-		weight();
-		speed();
-		cigar();
-		algorithm();
+		//welcome();
+		//algebra();
+		//weight();
+		//speed();
+		//cigar();
+		//algorithm();
 		pyramid();
 		//Scanner in = new Scanner(System.in);	
 		//while(true)
@@ -79,18 +79,21 @@ public class hello {
 				n=n/2;
 			else if (n%2 != 0)
 				n=(n*3)+1;
-		} 
+		}
 		
 	}
 	public static void pyramid(){
 		int n=Integer.valueOf(JOptionPane.showInputDialog(null,"What height do you want?"));
-		for (int i = n; i>n; i--) {
-			System.out.println(" ");
-		for (int i1=1; i1>n; i1=2*i1+1){
-				System.out.print("*");
+		for (int i = 1; i<2*n; i +=2) {
+			
+			for (int k=0; k<(2*n-i/2); k++){
+			System.out.print(" ");
 					
-		}
-			//System.out.println(" ");
+			}
+			for (int j=0; j<1; j++){
+				System.out.print("*");
+			}
+			System.out.println(" ");
 		}
 	}
 }
