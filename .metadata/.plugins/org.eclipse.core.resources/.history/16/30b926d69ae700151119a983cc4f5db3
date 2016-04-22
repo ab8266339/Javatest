@@ -1,0 +1,65 @@
+package Ex1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.*;
+
+public class DVD {
+	private String name;
+	private double price;
+	private char cat;
+	private static int count =0;
+	
+	public DVD(String n, int priceofsale, char cata){
+		name =n;
+		price = priceofsale;
+		cat=cata;
+		count++;
+		
+	}
+	public DVD (String n, double a, char m){
+		name = n;
+		price = a;
+		cat = m;
+		count++;
+	}
+	public String getName(){
+		return name;
+	}
+	public double getPrice(){
+		return price;
+	}
+	public char getCata(){
+		return cat;
+	}
+	public void setNameTo(String newName){
+		name = newName;
+	}
+	
+	public static void main(String[] args) throws IOException{
+		Path file = Paths.get("src/dvds.txt");
+		BufferedReader reader = Files.newBufferedReader(file);
+		String line = reader.readLine();
+		int a = 0;
+		
+		while (line != null){
+			a=a+1;
+			//System.out.println(line);
+			line = reader.readLine();
+			String [] lineSplit = line.split("/t");
+			//String name = lineSplit[0];
+			//double price = lineSplit[1];
+			System.out.println(lineSplit);
+			//System.out.println(new DVD(name,price,cat));
+		}
+		reader.close();
+		System.out.print("There are "+a+" lines!");
+	}
+	public static void printname(){
+		
+			
+			
+		
+	}
+
+}

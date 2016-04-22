@@ -1,0 +1,18 @@
+package Ex1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.*;
+
+public class Read {
+	public static void main(String[] args) throws IOException{
+		Path file = Paths.get("src/dvds.txt");
+		BufferedReader reader = Files.newBufferedReader(file);
+		String line = reader.readLine();
+		while (line != null){
+			System.out.println();
+			line = reader.readLine();
+		}
+	}
+
+}
