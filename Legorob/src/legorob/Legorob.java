@@ -8,7 +8,7 @@
  * and open the template in the editor.
  */
 package legorob;
-
+import legorob.RobGui.*;
 /**
  *
  * @author eia14hx
@@ -28,42 +28,43 @@ public class Legorob {
 
         //Create a robot object to use and connect to it
         Robot myRobot = new Robot();
-       
+        //RobGui R = new RobGui();
         //The robot is made of components which are themselves objects.
         //Create references to them as useful shortcuts
         Motor leftMotor = myRobot.getLargeMotor(Motor.Port.B);
         Motor rightMotor = myRobot.getLargeMotor(Motor.Port.C);
+        
         Speaker speaker = myRobot.getSpeaker();
-
+        
         //Go Forwards
-        leftMotor.setSpeed(150);
-        rightMotor.setSpeed(150);
-        leftMotor.forward();
-        rightMotor.forward();
+        //leftMotor.setSpeed(150);
+        //rightMotor.setSpeed(150);
+        //leftMotor.forward();
+        //rightMotor.forward();
 
         //Keep going for 5 seconds
-        myRobot.sleep(5000);
+        //myRobot.sleep(5000);
 
         //Stop
-        leftMotor.stop();
-        rightMotor.stop();
+        //leftMotor.stop();
+        //rightMotor.stop();
 
         //Beep at 1000Hz for half a second
-        speaker.playTone(1000, 500);
+        //speaker.playTone(1000, 500);
 
         //Go Backwards
-        leftMotor.backward();
-        rightMotor.backward();
+        //leftMotor.backward();
+        //rightMotor.backward();
 
         //Keep going for 5 seconds
-        myRobot.sleep(5000);
+        //myRobot.sleep(5000);
 
         //Stop
-        leftMotor.stop();
-        rightMotor.stop();
+        //leftMotor.stop();
+        //rightMotor.stop();
         
         //Disconnect from the Robot
-        myRobot.close();
+        ///myRobot.close();
 
     }
 
