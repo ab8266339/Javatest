@@ -29,7 +29,7 @@ public class Movement extends Robot{
         rotor.setSpeed(val);
     }
     public void Forward(){
-
+            
             leftMotor.forward();
             rightMotor.forward();
            
