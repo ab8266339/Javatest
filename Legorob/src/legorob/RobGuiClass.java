@@ -5,10 +5,9 @@
  */
 package legorob;
 import ShefRobot.*;
-import legorob.Movement.*;
 /**
  *
- * @author eia14hx
+ * @author eia14hx Hao Xu
  */
 public class RobGuiClass extends javax.swing.JFrame {
 
@@ -20,9 +19,7 @@ public class RobGuiClass extends javax.swing.JFrame {
         Movement move = new Movement();
     public RobGuiClass() {
         initComponents();
-        leftMotor.setSpeed(150);
-        rightMotor.setSpeed(150);
-        rotor.setSpeed(60);
+        move.initial();
     }
 
     /**
@@ -44,8 +41,10 @@ public class RobGuiClass extends javax.swing.JFrame {
         RotorLeftButton = new javax.swing.JButton();
         RotorRightButton = new javax.swing.JButton();
         LittleupButton = new javax.swing.JButton();
-        speedtext = new javax.swing.JTextField();
-        SpeedButton = new javax.swing.JButton();
+        movingspeedtext = new javax.swing.JTextField();
+        MovingSpeedButton = new javax.swing.JButton();
+        rotorspeedbutton = new javax.swing.JButton();
+        rotorspeedtext = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,35 +114,41 @@ public class RobGuiClass extends javax.swing.JFrame {
             }
         });
 
-        speedtext.setText("Speed");
+        movingspeedtext.setText("Speed type in here");
 
-        SpeedButton.setText("Change Speed");
-        SpeedButton.addActionListener(new java.awt.event.ActionListener() {
+        MovingSpeedButton.setText("Change Moving Speed");
+        MovingSpeedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SpeedButtonActionPerformed(evt);
+                MovingSpeedButtonActionPerformed(evt);
             }
         });
+
+        rotorspeedbutton.setText("Change Rotor Speed");
+        rotorspeedbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotorspeedbuttonActionPerformed(evt);
+            }
+        });
+
+        rotorspeedtext.setText("Speed type in here");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LittleupButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(115, Short.MAX_VALUE)
                         .addComponent(LeftButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RightButton)
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(RotorLeftButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RotorRightButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(speedtext, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LittleupButton)))
+                            .addComponent(RotorRightButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)))
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,8 +164,19 @@ public class RobGuiClass extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(ForwardButton)
                                 .addComponent(jLabel1))
-                            .addComponent(SpeedButton))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MovingSpeedButton)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(movingspeedtext, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(100, 100, 100)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(rotorspeedtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(rotorspeedbutton))))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +184,15 @@ public class RobGuiClass extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(SpeedButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LittleupButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(speedtext, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MovingSpeedButton)
+                    .addComponent(rotorspeedbutton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(movingspeedtext, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rotorspeedtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(LittleupButton)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ForwardButton)
@@ -263,11 +283,19 @@ public class RobGuiClass extends javax.swing.JFrame {
             move.stop();        // TODO add your handling code here:
     }//GEN-LAST:event_ForwardButtonMouseReleased
 
-    private void SpeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpeedButtonActionPerformed
-        if(SpeedButton.isEnabled()){
-            move.setMovingSpeed(Integer.valueOf(speedtext.getText()));
+    private void MovingSpeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MovingSpeedButtonActionPerformed
+        if(MovingSpeedButton.isEnabled()){
+            move.setMovingSpeed(Integer.valueOf(movingspeedtext.getText()));
         }// TODO add your handling code here// TODO add your handling code here:
-    }//GEN-LAST:event_SpeedButtonActionPerformed
+    }//GEN-LAST:event_MovingSpeedButtonActionPerformed
+
+    private void rotorspeedbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotorspeedbuttonActionPerformed
+        if (rotorspeedbutton.isEnabled()) {
+            move.setRotorSpeed(Integer.valueOf(rotorspeedtext.getText()));
+            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotorspeedbuttonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -307,13 +335,15 @@ public class RobGuiClass extends javax.swing.JFrame {
     private javax.swing.JButton ForwardButton;
     private javax.swing.JButton LeftButton;
     private javax.swing.JButton LittleupButton;
+    private javax.swing.JButton MovingSpeedButton;
     private javax.swing.JButton RightButton;
     private javax.swing.JButton RotorLeftButton;
     private javax.swing.JButton RotorRightButton;
-    private javax.swing.JButton SpeedButton;
     private javax.swing.JButton StopButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField speedtext;
+    private javax.swing.JTextField movingspeedtext;
+    private javax.swing.JButton rotorspeedbutton;
+    private javax.swing.JTextField rotorspeedtext;
     // End of variables declaration//GEN-END:variables
 }

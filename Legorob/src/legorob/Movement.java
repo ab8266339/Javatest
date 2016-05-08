@@ -16,13 +16,18 @@ public class Movement extends Robot{
         Speaker speaker = myRobot.getSpeaker();
         Motor rotor = myRobot.getLargeMotor(Motor.Port.D);
         
-        
+    public void initial(){
+        leftMotor.setSpeed(150);
+        rightMotor.setSpeed(150);
+        rotor.setSpeed(100);
+    }    
     public void setMovingSpeed(int val){
         leftMotor.setSpeed(val);
-        rightMotor.setSpeed(val);
-       
-            
+        rightMotor.setSpeed(val);    
     }    
+    public void setRotorSpeed(int val){
+        rotor.setSpeed(val);
+    }
     public void Forward(){
 
             leftMotor.forward();
@@ -64,4 +69,6 @@ public class Movement extends Robot{
                 myRobot.sleep(120);
                 rotor.stop();
     }
+
+    
 }
