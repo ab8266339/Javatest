@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package legorob;
 import ShefRobot.*;
 /**
@@ -16,15 +11,20 @@ public class Movement extends Robot{
         Speaker speaker = myRobot.getSpeaker();
         Motor rotor = myRobot.getLargeMotor(Motor.Port.D);
         
-        
+    public void initial(){
+        leftMotor.setSpeed(150);
+        rightMotor.setSpeed(150);
+        rotor.setSpeed(100);
+    }    
     public void setMovingSpeed(int val){
         leftMotor.setSpeed(val);
-        rightMotor.setSpeed(val);
-       
-            
+        rightMotor.setSpeed(val);    
     }    
+    public void setRotorSpeed(int val){
+        rotor.setSpeed(val);
+    }
     public void Forward(){
-
+            
             leftMotor.forward();
             rightMotor.forward();
            
@@ -64,4 +64,15 @@ public class Movement extends Robot{
                 myRobot.sleep(120);
                 rotor.stop();
     }
+    public void rotorautoright(){
+        setRotorSpeed(700);
+        rotorright();
+        
+    }
+    public void rotorautoleft(){
+        setRotorSpeed(700);
+        rotorleft();
+    }
+
+    
 }

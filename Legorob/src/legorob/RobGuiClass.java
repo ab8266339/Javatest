@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package legorob;
 import ShefRobot.*;
-import legorob.Movement.*;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 /**
  *
- * @author eia14hx
+ * @author eia14hx Hao Xu
  */
 public class RobGuiClass extends javax.swing.JFrame {
 
@@ -18,11 +15,10 @@ public class RobGuiClass extends javax.swing.JFrame {
        // Speaker speaker = myRobot.getSpeaker();
        // Motor rotor = myRobot.getLargeMotor(Motor.Port.D);
         Movement move = new Movement();
+        Sensors sensor = new Sensors();
     public RobGuiClass() {
         initComponents();
-        leftMotor.setSpeed(150);
-        rightMotor.setSpeed(150);
-        rotor.setSpeed(60);
+        move.initial();
     }
 
     /**
@@ -35,7 +31,7 @@ public class RobGuiClass extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        welcomeText = new javax.swing.JLabel();
         ForwardButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         StopButton = new javax.swing.JButton();
@@ -43,13 +39,18 @@ public class RobGuiClass extends javax.swing.JFrame {
         RightButton = new javax.swing.JButton();
         RotorLeftButton = new javax.swing.JButton();
         RotorRightButton = new javax.swing.JButton();
-        LittleupButton = new javax.swing.JButton();
-        speedtext = new javax.swing.JTextField();
-        SpeedButton = new javax.swing.JButton();
+        movingspeedText = new javax.swing.JTextField();
+        MovingSpeedButton = new javax.swing.JButton();
+        rotorspeedButton = new javax.swing.JButton();
+        rotorspeedText = new javax.swing.JTextField();
+        distanceinfoText = new javax.swing.JTextField();
+        rangeButton = new javax.swing.JButton();
+        autoButton = new javax.swing.JRadioButton();
+        manualButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Welcome to the Lego EX3 control panel");
+        welcomeText.setText("Welcome to the Lego EX3 control panel");
 
         ForwardButton.setText("Forward");
         ForwardButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,16 +61,30 @@ public class RobGuiClass extends javax.swing.JFrame {
                 ForwardButtonMouseReleased(evt);
             }
         });
-        ForwardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ForwardButtonActionPerformed(evt);
+        ForwardButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ForwardButtonKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ForwardButtonKeyReleased(evt);
             }
         });
 
         BackButton.setText("Backward");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
+        BackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BackButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BackButtonMouseReleased(evt);
+            }
+        });
+        BackButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BackButtonKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                BackButtonKeyReleased(evt);
             }
         });
 
@@ -81,16 +96,22 @@ public class RobGuiClass extends javax.swing.JFrame {
         });
 
         LeftButton.setText("Left");
-        LeftButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LeftButtonActionPerformed(evt);
+        LeftButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LeftButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                LeftButtonMouseReleased(evt);
             }
         });
 
         RightButton.setText("Right");
-        RightButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RightButtonActionPerformed(evt);
+        RightButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                RightButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                RightButtonMouseReleased(evt);
             }
         });
 
@@ -108,19 +129,46 @@ public class RobGuiClass extends javax.swing.JFrame {
             }
         });
 
-        LittleupButton.setText("up little");
-        LittleupButton.addActionListener(new java.awt.event.ActionListener() {
+        movingspeedText.setText("Speed type in here");
+
+        MovingSpeedButton.setText("Change Moving Speed");
+        MovingSpeedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LittleupButtonActionPerformed(evt);
+                MovingSpeedButtonActionPerformed(evt);
             }
         });
 
-        speedtext.setText("Speed");
-
-        SpeedButton.setText("Change Speed");
-        SpeedButton.addActionListener(new java.awt.event.ActionListener() {
+        rotorspeedButton.setText("Change Rotor Speed");
+        rotorspeedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SpeedButtonActionPerformed(evt);
+                rotorspeedButtonActionPerformed(evt);
+            }
+        });
+
+        rotorspeedText.setText("Speed type in here");
+
+        distanceinfoText.setText("Distance");
+
+        rangeButton.setText("Range finder");
+        rangeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rangeButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(autoButton);
+        autoButton.setText("autodetection");
+        autoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(manualButton);
+        manualButton.setText("Manunal");
+        manualButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manualButtonActionPerformed(evt);
             }
         });
 
@@ -128,23 +176,6 @@ public class RobGuiClass extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(115, Short.MAX_VALUE)
-                        .addComponent(LeftButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RightButton)
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(RotorLeftButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RotorRightButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(speedtext, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LittleupButton)))
-                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -156,79 +187,105 @@ public class RobGuiClass extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ForwardButton)
-                                .addComponent(jLabel1))
-                            .addComponent(SpeedButton))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(welcomeText)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(MovingSpeedButton)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(rangeButton)
+                                                        .addGap(0, 0, Short.MAX_VALUE))
+                                                    .addComponent(movingspeedText))))
+                                        .addGap(100, 100, 100))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(distanceinfoText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(129, 129, 129)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rotorspeedButton)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rotorspeedText)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(manualButton)
+                                                    .addComponent(autoButton))
+                                                .addGap(9, 9, 9)))))))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(LeftButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RightButton)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ForwardButton)
+                        .addGap(69, 69, 69)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(RotorLeftButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RotorRightButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(welcomeText)
                 .addGap(18, 18, 18)
-                .addComponent(SpeedButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MovingSpeedButton)
+                    .addComponent(rotorspeedButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(movingspeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rotorspeedText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rangeButton)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LittleupButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(speedtext, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ForwardButton)
-                    .addComponent(RotorLeftButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LeftButton)
-                    .addComponent(RightButton)
-                    .addComponent(RotorRightButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BackButton)
-                .addGap(38, 38, 38)
-                .addComponent(StopButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(distanceinfoText, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ForwardButton)
+                            .addComponent(RotorLeftButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LeftButton)
+                            .addComponent(RightButton)
+                            .addComponent(RotorRightButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BackButton)
+                        .addGap(38, 38, 38)
+                        .addComponent(StopButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(autoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(manualButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        @SuppressWarnings("empty-statement")
-    private void ForwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardButtonActionPerformed
-              ;// TODO add your handling code here:
-    }//GEN-LAST:event_ForwardButtonActionPerformed
-
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        
-        if (BackButton.isEnabled()){
-            
-            
-            move.Backward();
-        }// TODO add your handling code here:
-    }//GEN-LAST:event_BackButtonActionPerformed
-
     private void StopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopButtonActionPerformed
-        
-        
-        
         if (StopButton.isEnabled()){
-            
-           
             move.stop();
-            
-        }// TODO add your handling code here:
+        }
     }//GEN-LAST:event_StopButtonActionPerformed
-
-    private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
-        if (LeftButton.isEnabled()){
-            move.left();
-        }// TODO add your handling code here:
-    }//GEN-LAST:event_LeftButtonActionPerformed
-
-    private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
-        if (RightButton.isEnabled()){
-            move.right();
-        }    
-    }//GEN-LAST:event_RightButtonActionPerformed
 
     private void RotorLeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RotorLeftButtonActionPerformed
        
@@ -248,12 +305,6 @@ public class RobGuiClass extends javax.swing.JFrame {
        }// TODO add your handling code here:
     }//GEN-LAST:event_RotorRightButtonActionPerformed
 
-    private void LittleupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LittleupButtonActionPerformed
-         if(LittleupButton.isEnabled()){
-            move.rotorup();
-        }/// TODO add your handling code here:
-    }//GEN-LAST:event_LittleupButtonActionPerformed
-
     private void ForwardButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ForwardButtonMousePressed
             move.Forward(); 
         // TODO add your handling code here:
@@ -263,38 +314,99 @@ public class RobGuiClass extends javax.swing.JFrame {
             move.stop();        // TODO add your handling code here:
     }//GEN-LAST:event_ForwardButtonMouseReleased
 
-    private void SpeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpeedButtonActionPerformed
-        if(SpeedButton.isEnabled()){
-            move.setMovingSpeed(Integer.valueOf(speedtext.getText()));
+    private void MovingSpeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MovingSpeedButtonActionPerformed
+        if(MovingSpeedButton.isEnabled()){
+            move.setMovingSpeed(Integer.valueOf(movingspeedText.getText()));
         }// TODO add your handling code here// TODO add your handling code here:
-    }//GEN-LAST:event_SpeedButtonActionPerformed
+    }//GEN-LAST:event_MovingSpeedButtonActionPerformed
+
+    private void rotorspeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotorspeedButtonActionPerformed
+        if (rotorspeedButton.isEnabled()) {
+            move.setRotorSpeed(Integer.valueOf(rotorspeedText.getText()));
+            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotorspeedButtonActionPerformed
+
+    private void RightButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RightButtonMousePressed
+        move.right();
+    }//GEN-LAST:event_RightButtonMousePressed
+
+    private void LeftButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LeftButtonMousePressed
+        move.left();// TODO add your handling code here:
+    }//GEN-LAST:event_LeftButtonMousePressed
+
+    private void LeftButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LeftButtonMouseReleased
+        move.stop();          // TODO add your handling code here:
+    }//GEN-LAST:event_LeftButtonMouseReleased
+
+    private void RightButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RightButtonMouseReleased
+        move.stop();  // TODO add your handling code here:
+    }//GEN-LAST:event_RightButtonMouseReleased
+
+    private void BackButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMousePressed
+        move.Backward();        // TODO add your handling code here:
+    }//GEN-LAST:event_BackButtonMousePressed
+
+    private void BackButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMouseReleased
+        move.stop();  // TODO add your handling code here:
+    }//GEN-LAST:event_BackButtonMouseReleased
+
+    private void ForwardButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ForwardButtonKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            move.Forward();
+        }
+    }//GEN-LAST:event_ForwardButtonKeyPressed
+
+    private void ForwardButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ForwardButtonKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            move.stop();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_ForwardButtonKeyReleased
+
+    private void BackButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackButtonKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            move.Backward();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_BackButtonKeyPressed
+
+    private void BackButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BackButtonKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            move.stop();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_BackButtonKeyReleased
+
+    private void rangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rangeButtonActionPerformed
+        float[] distance = sensor.getRawSample();
+            distanceinfoText.setText(Arrays.toString(distance));
+            // TODO add your handling code here:
+    }//GEN-LAST:event_rangeButtonActionPerformed
+
+    private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
+        if(autoButton.isSelected()){
+
+            float[] distance = sensor.getRawSample();
+            for (float i :distance)
+                if (i<0.1){
+                    move.rotorautoright();
+                }
+                else{
+                    move.rotorautoleft();
+                }
+        
+        }
+        
+    }//GEN-LAST:event_autoButtonActionPerformed
+
+    private void manualButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualButtonActionPerformed
+        if(manualButton.isSelected()){
+            move.initial();
+            myRobot.closeSensor(Sensor.Port.S1);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_manualButtonActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RobGuiClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RobGuiClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RobGuiClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RobGuiClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RobGuiClass().setVisible(true);
@@ -306,14 +418,19 @@ public class RobGuiClass extends javax.swing.JFrame {
     private javax.swing.JButton BackButton;
     private javax.swing.JButton ForwardButton;
     private javax.swing.JButton LeftButton;
-    private javax.swing.JButton LittleupButton;
+    private javax.swing.JButton MovingSpeedButton;
     private javax.swing.JButton RightButton;
     private javax.swing.JButton RotorLeftButton;
     private javax.swing.JButton RotorRightButton;
-    private javax.swing.JButton SpeedButton;
     private javax.swing.JButton StopButton;
+    private javax.swing.JRadioButton autoButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField speedtext;
+    private javax.swing.JTextField distanceinfoText;
+    private javax.swing.JRadioButton manualButton;
+    private javax.swing.JTextField movingspeedText;
+    private javax.swing.JButton rangeButton;
+    private javax.swing.JButton rotorspeedButton;
+    private javax.swing.JTextField rotorspeedText;
+    private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
 }
