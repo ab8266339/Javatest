@@ -32,7 +32,7 @@ public class RobGuiClass extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        welcomeText = new javax.swing.JLabel();
         ForwardButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         StopButton = new javax.swing.JButton();
@@ -48,7 +48,7 @@ public class RobGuiClass extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Welcome to the Lego EX3 control panel");
+        welcomeText.setText("Welcome to the Lego EX3 control panel");
 
         ForwardButton.setText("Forward");
         ForwardButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,7 +163,7 @@ public class RobGuiClass extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(ForwardButton)
-                                .addComponent(jLabel1))
+                                .addComponent(welcomeText))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(MovingSpeedButton)
@@ -182,7 +182,7 @@ public class RobGuiClass extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(welcomeText)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MovingSpeedButton)
@@ -340,9 +340,9 @@ public class RobGuiClass extends javax.swing.JFrame {
     private javax.swing.JButton RotorRightButton;
     private javax.swing.JButton StopButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField movingspeedtext;
     private javax.swing.JButton rotorspeedbutton;
     private javax.swing.JTextField rotorspeedtext;
+    private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
 }
